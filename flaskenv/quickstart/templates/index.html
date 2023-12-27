@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naive Bayes Web App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Naive Bayes Web App</h1>
+
+        <form method="post" action="/">
+            <label for="dataset-url">Masukkan URL Dataset:</label>
+            <input type="text" name="dataset-url" id="dataset-url" required>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        {% if error_message %}
+            <div class="alert alert-danger mt-3" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
+
+        {% if df_head %}
+            <h2>Data Head</h2>
+            {{ df_head|safe }}
+
+            <h2>Target Column</h2>
+            <p>{{ target_column }}</p>
+
+            <h2>Model Evaluation</h2>
+            <p>Accuracy: {{ accuracy }}</p>
+            <h3>Classification Report</h3>
+            <pre>{{ classification_report }}</pre>
+        {% endif %}
+    </div>
+</body>
+</html>
